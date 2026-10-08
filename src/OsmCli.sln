@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OsmCli", "OsmCli\OsmCli.csproj", "{2FACD748-32B7-44CB-9880-CC82E9DFD479}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OsmPlayground.Data", "OsmPlayground.Data\OsmPlayground.Data.csproj", "{4FF038A0-CC01-4AEC-92CF-D7F07776D240}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{C2896FB0-AF2C-4FB6-B673-73553FA1082D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "__Repository", "__Repository", "{577108CB-0B0C-4F25-AE4B-AE2573C5BE6B}"
+	ProjectSection(SolutionItems) = preProject
+		..\.gitignore = ..\.gitignore
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "__Claude", "__Claude", "{C1CBB95E-586C-43A0-8F96-1D991FCD42C0}"
+	ProjectSection(SolutionItems) = preProject
+		..\.claude\settings.local.json = ..\.claude\settings.local.json
+		..\CLAUDE.md = ..\CLAUDE.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{201D794A-7282-44F7-BED3-0E6CD45D74E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{201D794A-7282-44F7-BED3-0E6CD45D74E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{201D794A-7282-44F7-BED3-0E6CD45D74E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{201D794A-7282-44F7-BED3-0E6CD45D74E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FACD748-32B7-44CB-9880-CC82E9DFD479}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FACD748-32B7-44CB-9880-CC82E9DFD479}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FACD748-32B7-44CB-9880-CC82E9DFD479}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FACD748-32B7-44CB-9880-CC82E9DFD479}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4FF038A0-CC01-4AEC-92CF-D7F07776D240}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FF038A0-CC01-4AEC-92CF-D7F07776D240}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FF038A0-CC01-4AEC-92CF-D7F07776D240}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FF038A0-CC01-4AEC-92CF-D7F07776D240}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4FF038A0-CC01-4AEC-92CF-D7F07776D240} = {C2896FB0-AF2C-4FB6-B673-73553FA1082D}
+	EndGlobalSection
+EndGlobal
