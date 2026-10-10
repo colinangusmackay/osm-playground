@@ -4,9 +4,9 @@ using OsmPlayground.Data.Entities;
 
 namespace OsmPlayground.Data.Configuration;
 
-public class OsmRelationConfiguration : OsmEntityConfiguration, IEntityTypeConfiguration<OsmRelation>
+public class OsmRelationConfiguration : OsmEntityConfiguration<OsmRelation>
 {
-    public void Configure(EntityTypeBuilder<OsmRelation> builder)
+    public override void Configure(EntityTypeBuilder<OsmRelation> builder)
     {
         builder.ToTable("osm_relations");
 
@@ -14,7 +14,11 @@ public class OsmRelationConfiguration : OsmEntityConfiguration, IEntityTypeConfi
 
         builder.HasMany(r => r.Members)
             .WithOne()
-            .HasForeignKey(rm => rm.RelationId);
+            .HasForeignKey(rm => rm.RelationId)
+            .IsRequired()
+            // Deleting a relation removes its member list only; the nodes, ways
+            // and nested relations it referenced remain.
+            .OnDelete(DeleteBehavior.Cascade);
 
         builder.Ignore(r => r.Nodes);
         builder.Ignore(r => r.Ways);

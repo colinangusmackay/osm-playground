@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using OsmPlayground.Data.Entities;
+using OsmPlayground.Domain;
 
 namespace OsmPlayground.Data.Configuration;
 
@@ -16,5 +17,8 @@ public class OsmRelationMemberTypeLookupConfiguration : IEntityTypeConfiguration
             new OsmRelationMemberTypeLookup{Id = OsmRelationMemberType.Node, Name = nameof(OsmRelationMemberType.Node)},
             new OsmRelationMemberTypeLookup{Id = OsmRelationMemberType.Way, Name = nameof(OsmRelationMemberType.Way)},
             new OsmRelationMemberTypeLookup{Id = OsmRelationMemberType.Relation, Name = nameof(OsmRelationMemberType.Relation)});
+
+        builder.Property(rmtl => rmtl.Name)
+            .HasMaxLength(EnumHelper.MaxLength<OsmRelationMemberType>());
     }
 }

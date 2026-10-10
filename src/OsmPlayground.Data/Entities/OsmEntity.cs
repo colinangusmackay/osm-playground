@@ -10,7 +10,7 @@ public abstract class OsmEntity
 
     public long Id { get; init; }
 
-    public int UserId { get; init; }
+    public int? UserId { get; init; }
 
     public OsmUser? User { get; init; }
 
@@ -23,4 +23,8 @@ public abstract class OsmEntity
     public long Changeset { get; init; }
 
     public Dictionary<string, string> Tags { get; init; } = [];
+
+    // Set on import when the entity references data that is not in the
+    // database, e.g. a way or relation whose members fall outside the extract.
+    public bool IsIncomplete { get; set; }
 }

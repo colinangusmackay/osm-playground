@@ -15,14 +15,21 @@ public class OsmDbContext : DbContext
     {
     }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseNpgsql("Name=OsmPlayground", x => x.UseNetTopologySuite());
+      protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+      {
+          if (!optionsBuilder.IsConfigured)
+          {
+              optionsBuilder.UseNpgsql("Name=OsmPlayground", x => x.UseNetTopologySuite());
+          }
+
+          optionsBuilder.UseSnakeCaseNamingConvention();
+      }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder
             .HasPostgresExtension("hstore")
             .HasPostgresExtension("postgis");
-        modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(OsmDbContext).Assembly);
     }
 }

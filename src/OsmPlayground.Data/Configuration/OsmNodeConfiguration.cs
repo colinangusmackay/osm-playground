@@ -4,9 +4,9 @@ using OsmPlayground.Data.Entities;
 
 namespace OsmPlayground.Data.Configuration;
 
-public class OsmNodeConfiguration : OsmEntityConfiguration, IEntityTypeConfiguration<OsmNode>
+public class OsmNodeConfiguration : OsmEntityConfiguration<OsmNode>
 {
-    public void Configure(EntityTypeBuilder<OsmNode> builder)
+    public override void Configure(EntityTypeBuilder<OsmNode> builder)
     {
         builder.ToTable("osm_nodes");
 
@@ -17,8 +17,10 @@ public class OsmNodeConfiguration : OsmEntityConfiguration, IEntityTypeConfigura
 
         builder.Ignore(n => n.Ways);
 
-        builder.Property(n => n.Location).
-            HasColumnType("geometry(Point, 4326)");
+        builder.Property(n => n.Location)
+            .IsRequired()
+            .HasColumnType("geometry(Point, 4326)");
+
         builder.HasIndex(n => n.Location)
             .HasMethod("GIST");
     }

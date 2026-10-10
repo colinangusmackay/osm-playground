@@ -10,6 +10,10 @@ public class OsmRelationNodeRefConfiguration : IEntityTypeConfiguration<OsmRelat
     {
         builder.HasOne(rn => rn.Node)
             .WithMany()
-            .HasForeignKey(rn => rn.NodeId);
+            .HasForeignKey(rn => rn.NodeRefId)
+            .IsRequired(false)
+            // A node can't be deleted while a relation uses it; remove it from
+            // the relation first.
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }

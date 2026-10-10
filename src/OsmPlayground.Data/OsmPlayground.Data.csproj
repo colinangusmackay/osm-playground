@@ -11,10 +11,16 @@
     </ItemGroup>
 
     <ItemGroup>
+      <PackageReference Include="EFCore.NamingConventions" Version="10.0.1" />
       <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.12" />
       <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.12" />
       <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="10.0.3" />
       <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL.NetTopologySuite" Version="10.0.3" />
+      <PackageReference Include="ProjNET" Version="2.1.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\OsmPlayground.Domain\OsmPlayground.Domain.csproj" />
     </ItemGroup>
 
 </Project>

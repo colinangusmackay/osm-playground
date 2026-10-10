@@ -10,6 +10,10 @@ public class OsmRelationWayRefConfiguration : IEntityTypeConfiguration<OsmRelati
     {
         builder.HasOne(rw => rw.Way)
             .WithMany()
-            .HasForeignKey(rw => rw.WayId);
+            .HasForeignKey(rw => rw.WayRefId)
+            .IsRequired(false)
+            // A way can't be deleted while a relation uses it; remove it from
+            // the relation first.
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }

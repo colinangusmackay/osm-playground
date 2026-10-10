@@ -7,17 +7,9 @@ public class OsmNode : OsmEntity
 {
     private Point _location = GeomFactory.CreatePoint(new Coordinate(0, 0));
 
-    public double Latitude
-    {
-        get => _location.Y;
-        set => _location = CreatePoint(Longitude, value);
-    }
+    public double Latitude => _location.Y;
 
-    public double Longitude
-    {
-        get => _location.X;
-        set => _location = CreatePoint(value, Latitude);
-    }
+    public double Longitude => _location.X;
 
     public Point Location
     {
@@ -25,13 +17,17 @@ public class OsmNode : OsmEntity
         set
         {
             ArgumentNullException.ThrowIfNull(value);
+            if (value.SRID != GeomFactory.SRID)
+                throw new ArgumentException($"Location SRID ({value.SRID}) must match the factory SRID ({GeomFactory.SRID}).", nameof(value));
             _location = value;
         }
     }
 
     public List<OsmWayNode> WayNodes { get; init; } = [];
 
-    public IEnumerable<OsmWay> Ways => WayNodes.Select(wn => wn.Way);
+    public IEnumerable<OsmWay> Ways => WayNodes
+        .Where(wn => wn.Way is not null)
+        .Select(wn => wn.Way!);
 
-    private static Point CreatePoint(double longitude, double latitude) => GeomFactory.CreatePoint(new Coordinate(longitude, latitude));
+    public Point SetLocation(double latitude, double longitude) => Location = GeomFactory.CreatePoint(new Coordinate(longitude, latitude));
 }
