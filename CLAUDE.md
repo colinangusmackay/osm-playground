@@ -88,7 +88,6 @@ psql -h localhost -U osmuser -d osm
 - All schema changes go through EF migrations — never edit the database schema by hand.
 - Do not modify migrations that have already been applied to shared environments; add a new one instead.
 - Use parameterised queries only; never build SQL by string concatenation.
-- <!-- TODO: schema names, naming for indexes/constraints, seeding approach -->
 
 ## Testing
 

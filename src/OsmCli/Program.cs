@@ -1,6 +1,10 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using System.CommandLine;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
+using OsmCli;
 using OsmPlayground.Data;
+
+var rootCommand = new RootCommand("A CLI for dealing with OpenStreetMap data.").Setup(args);
 
 var appBuilder = Host.CreateApplicationBuilder();
 
@@ -14,6 +18,8 @@ if (appBuilder.Environment.IsEnvironment("Local"))
 var services = appBuilder.Services;
 
 services.AddOsmData();
+
+
 
 var host = appBuilder.Build();
 
