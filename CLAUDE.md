@@ -50,15 +50,22 @@ dotnet format
 
 ### Database
 
+The EF commands need `DOTNET_ENVIRONMENT=Local` so the OsmCli host loads
+`appsettings.Local.json`; without it EF gets the placeholder connection string
+from `appsettings.json`.
+
 ```bash
 # Apply migrations
-# TODO: e.g. dotnet ef database update --project src/<DataProject> --startup-project src/<AppProject>
+DOTNET_ENVIRONMENT=Local dotnet ef database update --project src/OsmPlayground.Data --startup-project src/OsmCli
 
 # Add a migration
-# TODO: e.g. dotnet ef migrations add <Name> --project src/<DataProject> --startup-project src/<AppProject>
+DOTNET_ENVIRONMENT=Local dotnet ef migrations add <Name> --project src/OsmPlayground.Data --startup-project src/OsmCli
+
+# List migrations and whether they have been applied
+DOTNET_ENVIRONMENT=Local dotnet ef migrations list --project src/OsmPlayground.Data --startup-project src/OsmCli
 
 # Connect with psql
-# TODO: e.g. psql -h localhost -U <user> -d <database>
+psql -h localhost -U osmuser -d osm
 ```
 
 ## Configuration

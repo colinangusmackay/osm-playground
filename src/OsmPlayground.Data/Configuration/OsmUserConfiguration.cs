@@ -13,6 +13,9 @@ public class OsmUserConfiguration : IEntityTypeConfiguration<OsmUser>
 
         builder.HasKey(u => u.Id);
 
+        builder.Property(u => u.Id)
+            .ValueGeneratedNever();
+
         builder.Property(u => u.DisplayName)
             .HasMaxLength(255);
 

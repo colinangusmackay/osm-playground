@@ -6,6 +6,8 @@ namespace OsmPlayground.Data.Context;
 
 public class OsmDbContext : DbContext
 {
+    public const string ConnectionStringName = "OsmPlayground";
+
     public OsmDbContext()
     {
     }
@@ -19,7 +21,7 @@ public class OsmDbContext : DbContext
       {
           if (!optionsBuilder.IsConfigured)
           {
-              optionsBuilder.UseNpgsql("Name=OsmPlayground", x => x.UseNetTopologySuite());
+              optionsBuilder.UseNpgsql($"Name={ConnectionStringName}", x => x.UseNetTopologySuite());
           }
 
           optionsBuilder.UseSnakeCaseNamingConvention();
