@@ -1,10 +1,15 @@
 ﻿using System.CommandLine;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using OsmCli;
+using OsmCli.Commands;
 using OsmPlayground.Data;
 
-var rootCommand = new RootCommand("A CLI for dealing with OpenStreetMap data.").Setup(args);
+IServiceProvider? provider = null;
+var parsedCommand = new RootCommand("A CLI for dealing with OpenStreetMap data.")
+    .Setup(args, () => provider ?? throw new InvalidOperationException("The host has not been built."))
+    .Parse(args);
 
 var appBuilder = Host.CreateApplicationBuilder();
 
@@ -18,9 +23,9 @@ if (appBuilder.Environment.IsEnvironment("Local"))
 var services = appBuilder.Services;
 
 services.AddOsmData();
+services.AddScoped<ImportCommandHandler>();
 
+using var host = appBuilder.Build();
+provider = host.Services;
 
-
-var host = appBuilder.Build();
-
-await host.RunAsync();
+return await parsedCommand.InvokeAsync();
