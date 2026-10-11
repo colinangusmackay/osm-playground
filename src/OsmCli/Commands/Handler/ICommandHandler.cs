@@ -1,6 +1,6 @@
 using System.CommandLine;
 
-namespace OsmCli.Commands;
+namespace OsmCli.Commands.Handler;
 
 public interface ICommandHandler
 {

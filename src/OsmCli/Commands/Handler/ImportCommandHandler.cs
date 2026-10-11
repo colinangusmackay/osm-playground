@@ -1,6 +1,7 @@
 using System.CommandLine;
+using OsmCli.Commands.Cli;
 
-namespace OsmCli.Commands;
+namespace OsmCli.Commands.Handler;
 
 public class ImportCommandHandler : ICommandHandler
 {

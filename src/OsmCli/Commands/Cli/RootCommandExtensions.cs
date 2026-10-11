@@ -1,7 +1,9 @@
 using System.CommandLine;
 using Microsoft.Extensions.Logging;
+using OsmCli.Commands.Cli;
+using OsmCli.Commands.Handler;
 
-namespace OsmCli.Commands;
+namespace OsmCli.Commands.Cli;
 
 public static class RootCommandExtensions
 {

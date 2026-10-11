@@ -2,12 +2,13 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using OsmCli;
-using OsmCli.Commands;
+using OsmCli.Commands.Cli;
+using OsmCli.Commands.Handler;
 using OsmPlayground.Data;
 
 IServiceProvider? provider = null;
 var parsedCommand = new RootCommand("A CLI for dealing with OpenStreetMap data.")
+    // ReSharper disable once AccessToModifiedClosure - That's the point that we get the modified closure
     .Setup(args, () => provider ?? throw new InvalidOperationException("The host has not been built."))
     .Parse(args);
 

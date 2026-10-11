@@ -1,6 +1,6 @@
 using System.CommandLine;
 
-namespace OsmCli.Commands;
+namespace OsmCli.Commands.Cli;
 
 public static class ImportCommandOptions
 {

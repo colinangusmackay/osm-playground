@@ -1,8 +1,8 @@
 using System.CommandLine;
 using Microsoft.Extensions.DependencyInjection;
-using OsmCli.Commands;
+using OsmCli.Commands.Handler;
 
-namespace OsmCli;
+namespace OsmCli.Commands;
 
 public static class CommandRunner
 {
